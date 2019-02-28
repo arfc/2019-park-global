@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 
-\title{Coupled Neutronics/Thermal-Hydraulics Simulation of the Molten Salt Fast Reactor with Moltres}
+\title{Safety Analysis of the Molten Salt Fast Reactor Fuel Composition using Moltres}
 \author{Sun Myung Park$^{1,2}$ and Kathryn D. Huff$^1$}
 \institute{$^1$Dept. of Nuclear, Plasma and Radiological Engineering, University of Illinois at Urbana-Champaign \\
 $^2$smpark3@illinois.edu}
@@ -32,33 +32,35 @@ $^2$smpark3@illinois.edu}
 
 \begin{abstract}
 %
-This abstract presents the outline for the code-to-code verification of Moltres.
-Moltres \cite{lindsay_introduction_2018} is an open source coupled neutronics/thermal hydraulics simulation tool for simulating molten salt reactors (MSR).
+Molten salt reactors (MSR) potentially possess the ability to run for extended periods with minimal shutdown time due to online fuel reprocessing.
+Their proposed equilibrium fuel compositions differ from start-up compositions due to burnup of initial fissile material, breeding of new fissile material, and production/removal of fission products.
+The impact of changing fuel composition on safety parameters (e.g. reactivity feedback coefficient) must be fully characterized to establish a licensing case for this class of reactors.
+
+Numerous computational tools exist for conventional nuclear reactors.
+However, most are not suitable for the study of MSRs.
 MSRs differ greatly from conventional solid-fuelled reactors, particularly in their neutronics and thermal-hydraulics behaviours.
 They present unique computational challenges that many existing computational tools fail to address effectively.
-Strong coupling between neutronics and thermal-hydraulics modeling is an important requirement for new MSR simulation tools due to the strong temperature reactivity coefficients arising from Doppler effects and changes in the fuel salt density. 
+New MSR simulation tools must capture strong coupling between neutronics and thermal-hydraulics exhibited by delayed neutron precursor movement as well as strong Doppler and density feedback in the fuel salt.
+This paper introduces a new simulation tool, Moltres \cite{lindsay_introduction_2018}, for investigating the impact of changing fuel composition on safety parameters.
 
-The development of novel simulation tools for MSRs is an essential step towards understanding the behaviour of MSRs under various conditions, one of which is the changing fuel compositions across the lifespan of MSRs.
-The fuel composition in an MSR continuously evolves over time as online refueling replenishes fissile material while removing fission product poisons. The impact of changing fuel composition on the safety parameters such as the reactivity feedback coefficient must be studied extensively.
+Moltres is an open source coupled neutronics/thermal hydraulics simulation tool for simulating MSRs.
+It is a software package built on the MOOSE finite element framework \cite{gaston_moose:_2009}.
+It solves the coupled time-dependent multi-group neutron diffusion, temperature and delayed neutron precursor (DNP) governing equations.
+The temperature and DNP equations fully account for fuel advection as the fuel salt flows upwards through the core.
 
-Moltres is an application code built in the MOOSE finite element framework \cite{gaston_moose:_2009}.
-Moltres is developed as a solver for the coupled multi-group neutron diffusion, temperature and delayed neutron precursor governing equations.
-MOOSE is a parallel framework and it has an adaptive meshing scheme.
-Therefore, reactor simulations with large complex meshes can scale effectively when run on multiple cores. 
+The MSR model studied in this paper is the Molten Salt Fast Reactor (MSFR) \cite{merle-lucotte_launching_2011}.
+The MSFR is a reference design for a fast-spectrum molten salt reactor developed under the EVOL and SAMOFAR projects \cite{serp_molten_2014}.
 
-The Molten Salt Fast Reactor (MSFR) is the MSR model used for the code-to-code verification.
-The MSFR is a reference design for a fast-spectrum molten salt reactor developed under the EVOL and SAMOFAR projects\cite{serp_molten_2014}.
-There are abundant MSFR parameter and simulation data available from various authors \cite{fiorina_modelling_2014} \cite{pettersen_coupled_2016} for the reference model to perform the code-to-code verification.
-
-The full paper will present Moltres simulation results of the MSFR reference model with three fuel compositions;
-They correspond to start-up, early life and equilibrium fuel compositions.
-The start-up fuel composition is a mix of $^{235}$U and $^{232}$Th in LiF salt.
+The full paper will present Moltres simulation results of the MSFR reference model with three fuel compositions:
+start-up, early life and equilibrium fuel compositions.
+The chosen start-up fuel composition is a eutectic mixture of $^{233}$U and $^{232}$Th fluorides in a lithium fluoride molten salt \cite{merle-lucotte_launching_2011}.
 This is in line with the main purpose of running the MSFR as a thorium breeder.
-Cross-section data for these fuel compositions will be generated using Serpent.
-Serpent \cite{leppanen_serpent_2015} is a continuous-energy Monte Carlo code used in numerous reactor physics applications.
-Safety parameters such as reactivity feedback coefficients will be calculated and assessed for the different compositions.
-The results will be compared with simulation data from existing literature.
-Furthermore, transient scenarios such as pump over-speed can be explored.
+Cross-section data for these fuel compositions are generated using Serpent \cite{leppanen_serpent_2015},
+which is a continuous-energy Monte Carlo code used in numerous reactor physics applications.
+Moltres will solve the coupled neutron transport equation as a steady-state eigenvalue problem to obtain the effective neutron multiplication factor, $k_{eff}$.
+For each fuel composition, the temperature distribution and densities will be varied slightly from the steady-state configuration to obtain the change in $k_{eff}$.
+Reactivity feedback coefficients will be calculated from these variations and assessed for each fuel compositions.
+Finally, the results will be compared with existing data \cite{fiorina_analysis_2012} \cite{fiorina_investigation_2013} of safety parameters for the three fuel compositions.
 
 \end{abstract}
 
