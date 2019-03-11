@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 
-\title{Coupled Neutronics/Thermal-Hydraulics Simulation of the Molten Salt Fast Reactor with Moltres}
+\title{Safety Analysis of the Molten Salt Fast Reactor Fuel Composition using Moltres}
 \author{Sun Myung Park$^{1,2}$ and Kathryn D. Huff$^1$}
 \institute{$^1$Dept. of Nuclear, Plasma and Radiological Engineering, University of Illinois at Urbana-Champaign \\
 $^2$smpark3@illinois.edu}
@@ -14,7 +14,7 @@ $^2$smpark3@illinois.edu}
 \setlength{\arrayrulewidth}{.4mm}
 \renewcommand{\arraystretch}{1.2}
 \usepackage[labelfont=bf]{caption}
-\captionsetup[table]{name=Table}
+%\captionsetup[table]{name=Table}
 \renewcommand{\thetable}{\arabic{table}}
 \usepackage{subcaption}
 \usepackage{enumitem}
@@ -22,7 +22,7 @@ $^2$smpark3@illinois.edu}
 \usepackage{siunitx}
 \newcolumntype{c}{>{\hsize=.56\hsize}X}
 \newcolumntype{b}{>{\hsize=.7\hsize}X}
-\newcolumntype{s}{>{\hsize=.74\hsize}X}
+%\newcolumntype{s}{>{\hsize=.74\hsize}X}
 \newcolumntype{f}{>{\hsize=.1\hsize}X}
 \newcolumntype{a}{>{\hsize=.45\hsize}X}
 \usepackage{titlesec}
@@ -31,17 +31,37 @@ $^2$smpark3@illinois.edu}
 \begin{document}
 
 \begin{abstract}
-Molten salt reactors (MSR) differ greatly from conventional solid-fuelled reactors, particularly in the neutronics and thermal-hydraulics behaviours. They present unique computational challenges that conventional computational tools fail to address effectively. The development of novel simulation tools for MSRs is an essential step towards understanding the behaviour of MSRs under various conditions. An important requirement for new MSR simulation tools is strong coupling between neutronics and thermal-hydraulics modeling due to the strong temperature reactivity coefficients arising from Doppler effects and changes in the fuel salt density.
+%
+Molten salt reactors (MSR) potentially possess the ability to run for extended periods with minimal shutdown time due to online fuel reprocessing.
+Their proposed equilibrium fuel compositions differ from start-up compositions due to burnup of initial fissile material, breeding of new fissile material, and production/removal of fission products.
+The impact of changing fuel composition on safety parameters (e.g. reactivity feedback coefficient) must be fully characterized to establish a licensing case for this class of reactors.
 
-Moltres is an open source coupled neutronics/thermal hydraulics simulation tool for simulating MSRs \cite{lindsay_introduction_2018}. It is under active development at the University of Illinois. It is an application code built using the MOOSE finite element framework \cite{gaston_moose:_2009}. Moltres is developed as a solver for the coupled multi-group neutron diffusion, temperature and delayed neutron precursor governing equations. As a multi-group neutronics solver on a coarse mesh, Moltres imposes relatively low computational loads compared to continuous energy neutronics solvers and computational fluid dynamics thermal-hydraulic solvers employed by other researchers in the study of MSRs. This allows for steady-state, transient and accident analyses with relatively low computational requirements.
+Numerous computational tools exist for conventional nuclear reactors.
+However, most are not suitable for the study of MSRs.
+MSRs differ greatly from conventional solid-fuelled reactors, particularly in their neutronics and thermal-hydraulics behaviours.
+They present unique computational challenges that many existing computational tools fail to address effectively.
+New MSR simulation tools must capture strong coupling between neutronics and thermal-hydraulics exhibited by delayed neutron precursor movement as well as strong Doppler and density feedback in the fuel salt.
+This paper introduces a new simulation tool, Moltres \cite{lindsay_introduction_2018}, for investigating the impact of changing fuel composition on safety parameters.
 
-This abstract presents the outline for the code-to-code verification of Moltres. The reactor model used for this verification is the Molten Salt Fast Reactor. The MSFR is a reference design for a fast-spectrum molten salt reactor developed under the EVOL and SAMOFAR projects\cite{serp_molten_2014}. There is abundant MSFR parameter and simulation data available from various authors \cite{fiorina_modelling_2014} \cite{pettersen_coupled_2016} for the reference model to perform the code-to-code verification.
+Moltres is an open source coupled neutronics/thermal hydraulics simulation tool for simulating MSRs.
+It is a software package built on the MOOSE finite element framework \cite{gaston_moose:_2009}.
+It solves the coupled time-dependent multi-group neutron diffusion, temperature and delayed neutron precursor (DNP) governing equations.
+The temperature and DNP equations fully account for fuel advection as the fuel salt flows upwards through the core.
 
-Moltres requires neutron group constant data from a neutron transport code. For this study, Serpent is used to generate the group constant data. Serpent \cite{leppanen_serpent_2015} is a continuous-energy Monte Carlo code used in numerous reactor physics applications. The inputs consist of MSFR reference model parameters, neutron energy group bounds, a nuclear data library, and the temperatures at which the group constants are to be generated. Six neutron group constant data is generated for the six-group neutron diffusion equation.
+The MSR model studied in this paper is the Molten Salt Fast Reactor (MSFR) \cite{merle-lucotte_launching_2011}.
+The MSFR is a reference design for a fast-spectrum molten salt reactor developed under the EVOL and SAMOFAR projects \cite{serp_molten_2014}.
 
-Moltres interpolates the provided group constant data generated by Serpent at various discrete temperatures. Other Moltres input parameters include flow velocity, a geometry mesh file, appropriate initial values, boundary conditions and material properties. The flow velocity is essential for advective heat transfer and the movement of delayed neutron precursors in the model.
+The full paper will present Moltres simulation results of the MSFR reference model with three fuel compositions:
+start-up, early life and equilibrium fuel compositions.
+The chosen start-up fuel composition is a eutectic mixture of $^{233}$U and $^{232}$Th fluorides in a lithium fluoride molten salt \cite{merle-lucotte_launching_2011}.
+This is in line with the main purpose of running the MSFR as a thorium breeder.
+Cross-section data for these fuel compositions are generated using Serpent \cite{leppanen_serpent_2015},
+which is a continuous-energy Monte Carlo code used in numerous reactor physics applications.
+Moltres will solve the coupled neutron transport equation as a steady-state eigenvalue problem to obtain the effective neutron multiplication factor, $k_{eff}$.
+For each fuel composition, the temperature distribution and densities will be varied slightly from the steady-state configuration to obtain the change in $k_{eff}$.
+Reactivity feedback coefficients will be calculated from these variations and assessed for each fuel compositions.
+Finally, the results will be compared with existing data \cite{fiorina_analysis_2012} \cite{fiorina_investigation_2013} of safety parameters for the three fuel compositions.
 
-The full paper will present Moltres results of MSFR reference model under various conditions defined by the reference model, such as the temperature of the fuel at the inlet and outlets and flow velocities. Furthermore, transient scenarios such as pump over-speed will be explored and studied and verified against existing simulation data by various authors.
 \end{abstract}
 
 \bibliographystyle{ans}
