@@ -401,6 +401,7 @@ $^b$smpark3@illinois.edu}
 	 \overrightarrow{u} &= \text{velocity of molten salt} \\
 	 k &= \text{thermal conductivity of molten salt},
 \end{align}
+}
 	and the source term $Q$ is given as:
 %
 \begin{align}
@@ -470,34 +471,6 @@ Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 	\label{table:outlet}
 \end{table}	
 
-	The temperature distribution is very different from the results by Fiorina
-	et al. \cite{fiorina_modelling_2014} and Pettersen
-	\cite{pettersen_coupled_2016} because we assumed a uniform velocity
-	profile. In reality, there is significant flow stagnation in the fuel salt
-	near the blanket tank. This causes temperatures to peak near the blanket
-	tank as opposed to the center of the core as seen in Figure \ref{fig:temp}.
-	However, improved models of the \gls{MSFR}, as shown by Aufiero et al.
-	\cite{aufiero_development_2014}, have temperature distributions closer to
-	the results in this paper through curved walls that optimize salt flow.
-	
-\begin{figure}[H] 
-	\centering
-	\includegraphics[width=.48\textwidth]{./figures/totalflux}
-	\captionsetup{justification=centering}
-	\caption{Total radial neutron flux at reactor half-height, for start-up,
-	\gls{BOL}, and equilibrium fuel compositions at steady state.}
-	\label{fig:totalflux}
-\end{figure} 
-
-\begin{figure}[H] 
-	\centering
-	\includegraphics[width=.48\textwidth]{./figures/stflux}
-	\captionsetup{justification=centering}
-	\caption{Total radial neutron flux at reactor half-height, for start-up,
-	\gls{BOL}, and equilibrium fuel compositions at steady state.}
-	\label{fig:stflux}
-\end{figure} 
-
 \begin{figure*}%
 \centering
 \begin{subfigure}{1\columnwidth}
@@ -518,16 +491,117 @@ Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 respectively.}
 \label{fig:temp}
 \end{figure*}
+%
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=.53\textwidth]{./figures/totalflux}
+	\captionsetup{justification=centering}
+	\caption{Total radial neutron flux at reactor half-height, for start-up,
+	\gls{BOL}, and equilibrium fuel compositions at steady state.}
+	\label{fig:totalflux}
+\end{figure} 
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=.53\textwidth]{./figures/stflux}
+	\captionsetup{justification=centering}
+	\caption{Neutron group fluxes at reactor half-height, for start-up
+	fuel composition at steady state.}
+	\label{fig:stflux}
+\end{figure} 
 
-\section{Unprotected Loss of Flow}
+	The temperature distribution is very different from the results by Fiorina
+	et al. \cite{fiorina_modelling_2014} and Pettersen
+	\cite{pettersen_coupled_2016} because we assumed a uniform velocity
+	profile. In reality, there is significant flow stagnation in the fuel salt
+	near the blanket tank. This causes temperatures to peak near the blanket
+	tank as opposed to the center of the core as seen in Figure \ref{fig:temp}.
+	However, improved models of the \gls{MSFR}, as shown by Aufiero et al.
+	\cite{aufiero_development_2014}, have temperature distributions closer to
+	the results in this paper through curved walls that optimize salt flow.
+	
+	Total power as defined by Eq. \ref{eq4} is approximately 2 GW. This
+	is 1 GW less than the rated 3 GW of the \gls{MSFR}. This may be mainly due
+	to the erroneous uniform velocity profile imposed in the core. From
+	fluid dynamics, velocity along the central axis of the core should be
+	higher than the velocity at the periphral areas near the blanket tank.
+	The higher velocity at the center results in higher advective heat transfer
+	away from the center of the core and cools the active region. This should
+	result in an increase in neutron flux from the strongly negative
+	temperature reactivity feedback, and thus higher heat generation. The
+	truncation of the top and bottom fuel salt region is also a factor for
+	the lower than expected heat production.
+	
+	Comparing the three different fuel compositions, the \gls{MSFR} operates at
+	the highest temperatures with the start-up fuel composition, followed by
+	the \gls{BOL}, and the equilibrium compositions. This may be due to the
+	generation of $^{233}$Pa as an intermediate for $^{233}$U breeding as
+	mentioned by Rykhlevskii et al. (cite Andrei) in their fuel cycle analysis
+	of the \gls{MSFR}.
 
-	An unprotected loss of flow accident may occur due to pump failure. In such
-	a scenario, a slower circulation loop is set up through natural convection.
-	Previous studies have shown that the pumps coast down
-	exponentially with a time constant to a velocity approximately 18 times
-	slower \cite{fiorina_modelling_2014}.
+\section{Loss of Secondary Cooling Accident}
+
+	A \gls{LOSCA} may occur due to various causes of failure in the secondary
+	coolant loop such as secondary loop pump failure or loss of secondary
+	coolant. While it is less likely in an \gls{MSFR} as it consists of 16
+	separate coolant loops each with its own secondary cooling system, the
+	potential consequences must still be studied.
+	The loss of secondary cooling is simulated by exponentially decreasing
+	the heat loss rate in the Moltres heat exchanger kernel with a time
+	constant of 5 s.
+	
+	The loss of heat sink is expected to cause an initial temperature spike,
+	followed by a decrease in neutron flux and heat generation due to the
+	strongly negative temperature reactivity feedback. Eventually, the
+	\gls{MSFR} should settle on a new steady state with a higher average
+	temperature than the operating temperature. If the high temperature is
+	sustained for a long period of time, it could lead to severe damage
+	in the reactor, pipes, or other instruments.
+	
+\begin{figure}[b] 
+	\centering
+	\includegraphics[width=.53\textwidth]{./figures/loscatemp}
+	\captionsetup{justification=centering}
+	\caption{Average core fuel temperature for start-up, \gls{BOL}, and
+	equilibrium fuel compositions during \gls{LOSCA}.}
+	\label{fig:loscatemp}
+\end{figure} 
+%
+\begin{figure}[t] 
+	\centering
+	\includegraphics[width=.53\textwidth]{./figures/loscaheat}
+	\captionsetup{justification=centering}
+	\caption{Total thermal power generated, for start-up, \gls{BOL}, and
+	 equilibrium fuel compositions during \gls{LOSCA}.}
+	\label{fig:loscaheat}
+\end{figure} 
+
+	As observed in Figure \ref{fig:loscatemp}, the average fuel temperature
+	increased by approximately 10 K and reached the new steady state
+	30-40 s after \gls{LOSCA} began. While the time delay, due to the high
+	initial
+	\gls{DNP} concentration, is in good agreement with results reported by
+	Fiorina et al. \cite{fiorina_modelling_2014}, the temperature rise is much
+	smaller than the 100 K increase reported by the same authors.
+	Power generation fell by two orders of
+	magnitude, resulting in a negligible temperature difference between the
+	inlets and outlets for all three fuel compositions. This could also be
+	attributed to the relatively small total power of 2 GW discussed in the
+	previous section, and the truncated \gls{MSFR} model.
+	
+	In comparing the three fuel compositions, a \gls{MSFR} loaded with
+	start-up fuel composition is at a higher risk as it has higher
+	temperatures under normal operating conditions and accident scenarios.
 
 \section{Conclusion}
+
+	Summarise results
+	
+	Safe
+	
+	Further development of the models is necessary to improve the accuracy
+	and reliability of Moltres as a coupled neutronics/thermal-hydraulics code.
+	Further work includes using an arbitrarily defined velocity profile, such
+	as a parabolic profile. A better option would be to 
 
 \bibliographystyle{ans}
 \bibliography{bibliography}
