@@ -1,7 +1,7 @@
 \documentclass{anstrans}
 
-\title{Safety Analysis of the Molten Salt Fast Reactor Fuel Composition using
-Moltres}
+\title{SAFETY ANALYSIS OF THE MOLTEN SALT FAST REACTOR FUEL COMPOSITION USING
+MOLTRES \\~\\~\\~\\}
 \author{Sun Myung Park$^{a,b}$, Andrei Rykhlevskii$^a$, and
 Kathryn D. Huff$^a$}
 \institute{$^a$Dept. of Nuclear, Plasma and Radiological Engineering,
@@ -31,9 +31,9 @@ $^b$smpark3@illinois.edu}
 %\newcolumntype{s}{>{\hsize=.74\hsize}X}
 \newcolumntype{f}{>{\hsize=.1\hsize}X}
 \newcolumntype{a}{>{\hsize=.45\hsize}X}
-\usepackage{titlesec}
-\titleformat*{\subsection}{\normalfont}
-\usepackage[super]{cite}
+%\usepackage{titlesec}
+%\titleformat*{\subsection}{\normalfont}
+%\usepackage[super]{cite}
 \usepackage{multirow}
 \usepackage{hhline}
 
@@ -46,8 +46,9 @@ $^b$smpark3@illinois.edu}
 
 \begin{abstract}
 %
+\textit{
     The Molten
-    Salt Fast Reactor (MSFR) has garnered great interest for its inherent
+    Salt Fast Reactor (MSFR) has garnered much interest for its inherent
     safety and sustainbility features. The MSFR can adopt a closed thorium fuel
     cycle for
     sustainable operation through the breeding of $^{233}$U from $^{232}$Th.
@@ -56,21 +57,22 @@ $^b$smpark3@illinois.edu}
     the MSFR using Moltres, a coupled neutronics/thermal-hydraulics code
     developed within the Multiphysics Object Oriented Simulation Environment
     (MOOSE) framework. Three different fuel compositions, start-up,
-    beginning-of-life (BOL), and equilibrium, were examined for potentially
+    early-life, and equilibrium, were examined for potentially
     dangerous
-    core temperature excursions during a loss of secondary cooling accident
-    (LOSCA). The steady state peak neutron flux showed good agreement
+    core temperature excursions during a unprotected loss of heat sink (ULOHS)
+    accident. The steady state peak neutron flux showed good agreement
     with existing MSFR data, while the temperature distribution and total power
     showed discrepancies which can be attributed to known sources of error.
-    For the transient behavior under the LOSCA
-    scenario, the time delay towards the new steady state core temperature is
-    also in good agreement with existing MSFR data. Moltres underestimated the
-    temperature rise by a factor of ten relative to other published data, due
-    to the same sources of
-    error for the steady state results. While a MSFR loaded with
+    For the transient behavior under the ULOHS
+    scenario, while the transition time towards the new steady state core
+    temperature is also in good agreement with existing MSFR simulations by
+    Fiorina et al., Moltres underestimated the
+    temperature rise by a factor of ten, due to the same sources of
+    error for the steady state results. While an MSFR loaded with
     start-up fuel composition operates at a higher temperature than with the
     other two fuel compositions, all three cases were shown to be inherently
     safe due to the strong negative temperature feedback.
+}
 \end{abstract}
 
 \section{Introduction}
@@ -79,13 +81,11 @@ $^b$smpark3@illinois.edu}
 	contain nuclear fuel dissolved and circulating in a molten salt coolant
 	loop.
 	They potentially possess the ability to run for extended 
-    periods with minimal shutdown time due to online fuel reprocessing, which
-    is a clear advantage over solid-fuelled reactors that require significant
-    downtime for refuelling.
-    Their proposed equilibrium fuel compositions differ substantially from
-    start-up compositions due to burnup of initial fissile material and 
-    breeding of new fissile material, but also fissile material feeds and 
-    removal of fission products. Also, while \gls{BOL} fuel composition is
+    periods with minimal shutdown time due to online fuel reprocessing.
+    Their equilibrium fuel compositions differ substantially from
+    start-up compositions not only due to burnup of initial fissile material
+    and breeding of new fissile material, but also fissile material feeds and 
+    removal of fission products. Also, while early-life fuel composition is
     largely dependent on the initial core loading, the long-term equilibrium
     fuel composition is determined by the type of feed.
     Since the changing fuel composition 
@@ -111,9 +111,7 @@ $^b$smpark3@illinois.edu}
     element framework \cite{gaston_moose:_2009}, Moltres solves the coupled 
     time-dependent multi-group neutron diffusion, temperature, and 
     \gls{DNP} governing equations.  The temperature and \gls{DNP} equations
-    fully 
-    account for fuel advection as the fuel salt flows upwards through the 
-    core.
+    fully account for flow via fuel salt advection.
     
     The \gls{MSFR} model studied in this paper is a reference design for a 
     fast-spectrum \gls{MSR} developed under H2020
@@ -122,37 +120,37 @@ $^b$smpark3@illinois.edu}
     conventional reactors. Firstly, it can run on a closed thorium fuel cycle,
     which reduces actinide production and waste radiotoxity.
     The fast neutron spectrum improves $^{233}$U breeding from $^{232}$Th, an
-    isotope that is about three times as abundant as uranium.
+    isotope that is approximately three times as abundant as uranium.
     Lastly, the \gls{MSFR} operates at near atmospheric pressure; this reduces
     the risk of containment structure failure and manufacturing costs.
     
     This paper presents results from Moltres simulations of the 
     \gls{MSFR} reference model with three fuel compositions:
-    start-up, \gls{BOL}, and equilibrium. In line with the purpose of the
+    start-up, early-life, and equilibrium. In line with the purpose of the
     \gls{MSFR} as a thorium breeder, the chosen start-up fuel composition
     under study is a eutectic mixture of $^{233}$U and 
-    $^{232}$Th fluorides in a lithium fluoride molten salt 
-    \cite{merle-lucotte_launching_2011}, with
+    $^{232}$Th fluorides in a lithium fluoride molten salt, with
     a Th/$^{233}$U mixture feed. $^{233}$U is extracted from
-    the blanket tank and reinserted into the core.
+    the blanket tank and reinserted into the core
+    \cite{merle-lucotte_launching_2011}.
     
     We generated group constants for 
     each fuel composition using SERPENT \cite{leppanen_serpent_2015}, a 
     continuous-energy Monte Carlo code for numerous reactor physics 
-    applications.
+    applications. The group constants relevant for Moltres simulations are
+    the various macroscopic neutron cross sections, neutron diffusion
+    coefficient, average fission energy, average neutron yield, inverse
+    neutron speed, fission spectrum, \gls{DNP} decay constants, and effective
+    delayed neutron fractions.
     Using these group constants, Moltres then 
     solves for the flux and temperature based on the neutron diffusion 
     equation coupled with temperature advection due to coolant flow. Transient 
     simulations will establish core fuel temperatures during transients.
     These distributions will give insight into MSFR transient behavior,
     which will help us identify potential safety risks.
-    
+
 \section{Molten Salt Fast Reactor}
 
-	The \gls{MSFR} is a reference design for a fast-spectrum molten salt
-	reactor
-	first developed under the \gls{EVOL} project, and continued by the
-	\gls{SAMOFAR} project \cite{serp_molten_2014}.
 	Figure \ref{fig:msfr} shows a schematic view of the \gls{MSFR}. The main
 	specifications of the \gls{MSFR} are given in Table \ref{table:msfr}.
 
@@ -199,9 +197,11 @@ $^b$smpark3@illinois.edu}
 	\end{tabular}
 	\label{table:msfr}
 \end{table}
-%
+
 \begin{table}[t]
 \centering
+\captionsetup{justification=centering}
+\caption{Fuel salt composition used for the Serpent simulation.}
 \begin{tabular}{rr}
 \hline
 {Isotope} & {Mole fraction [\%]}\\
@@ -212,8 +212,6 @@ $^{232}$Th & 7.40\\
 $^{233}$U & 1.00\\
 \hline
 \end{tabular}
-\captionsetup{justification=centering}
-\caption{Fuel salt composition used for the Serpent simulation.}
 \label{table:fuelsalt}
 \end{table}
 
@@ -221,7 +219,7 @@ $^{233}$U & 1.00\\
 	region. At the top of the core, the flow separates into 16 smaller external
 	loops, each of which passes through a heat exchanger and is pumped back
 	into the core. The primary heat exchangers transfer heat from the fuel salt 
-	to an intermediate salt coolant loop. There are other instrumentation along
+	to an intermediate salt coolant loop. There is other instrumentation along
 	the external loops for online reprocessing and gas sparging. The core is
 	radially surrounded by a tank of blanket molten salt, with reflectors at
 	the top and bottom of the core. The blanket salt contains fertile isotopes
@@ -246,18 +244,28 @@ $^{233}$U & 1.00\\
 	More recently, a coupled tool, comprising of the thermal-hydraulics code
 	TRACE and a multi-group 3D spatial neutronics solver \gls{PARCS}, was
 	used to run steady state and transient simulations of the \gls{MSFR}
-	\cite{pettersen_coupled_2016}. This approach allowed for a 3D model
+	\cite{pettersen_coupled_2016}. As \gls{PARCS} only supports conventional
+	fuel assembly shapes, the authors approximated the 3D axisymmetric
+	cylindrical \gls{MSFR} model with
+	hexagonal fuel assemblies. This approach allowed for a 3D model
 	simulation of the \gls{MSFR} on a coarse mesh, thus improving on the 2D
 	axisymmetric COMSOL/TUDelft models with the benefit of much lower
 	computation times in comparison to the CFD-OpenFOAM models. On top of
 	steady state simulations, the transient scenarios studied by Pettersen
-	\cite{pettersen_coupled_2016} include loss of heat sink, pump over-speed,
+	include loss of heat sink, pump over-speed,
 	over-cooling and loss of flow.
+	
+	As Moltres was first developed solely for the purpose of simulating
+	\glspl{MSR}, it does not require some of the
+	approximations arising from repurposing older codes.
+	This paper aims to present Moltres simulation results and safety analysis
+	of the \gls{MSFR}, for various fuel compositions through its operational
+	lifetime.
 
 \section{Methodology}
 
 	This section describes the overall modelling approach and the codes used
-	in this paper. First, the \gls{BOL} and equilibrium compositions were
+	in this paper. First, the early-life and equilibrium compositions were
 	obtained from SCALE/TRITON unit cell depletion calculations by Rykhlevskii
 	et al. \cite{rykhlevskii_fuel_2019} Their paper used a unit cell model for
 	the modelling
@@ -267,20 +275,19 @@ $^{233}$U & 1.00\\
 	showed very good agreement. We selected the equilibrium composition at
 	approximately 43 years after start-up because the TRU vector change
 	between each depletion time-step from this moment onwards is less than 3\%
-	\cite{rykhlevskii_fuel_2019}. For the \gls{BOL} composition, it is the 
-	resulting fuel composition at
-	300 days after start-up. Decay isotopes, whose neutron cross-section data
-	are not found in the
-	JEFF-3.1.2 nuclear data library, were omitted.
+	\cite{rykhlevskii_fuel_2019}. For the early-life composition, it is the 
+	resulting fuel composition at 300 days after start-up.
 	
 	We performed neutronics calculations on SERPENT using these fuel
 	compositions and a truncated, reference \gls{MSFR} core model
 	\cite{pettersen_coupled_2016} to generate six-group neutronics data for
-	Moltres.
+	Moltres. Isotopes in the fuel compositions, whose
+	neutron cross-section data are not found in the
+	JEFF-3.1.2 nuclear data library, were omitted from these calculations
 	The energy boundaries for the six neutron groups were adopted from previous
 	\gls{MSFR} studies and shown in Table \ref{table:bound}.
-	As for the \gls{DNP} groups, there are eight groups as defined by the
-	JEFF-3.1.2 nuclear data library used for neutron cross-section data.
+	As for the \gls{DNP}, there are eight \gls{DNP} groups implicitly defined
+	by the JEFF-3.1.2 nuclear data library.
 	The reactor model is a 2D axisymmetric model as shown in
 	Figure \ref{fig:reference}. This geometry focuses on the active central
 	region of the core. Basing the geometry on the reference model facilitates
@@ -288,9 +295,14 @@ $^{233}$U & 1.00\\
 	\cite{fiorina_modelling_2014} \cite{pettersen_coupled_2016} on the
 	reference model for code-to-code verification purposes.
 	The 2D model is extended into a 3D model in SERPENT by rotating it
-	around the central axis to form concentric cylinders.
+	around the central axis to form concentric cylinders. Table
+	\ref{table:reactivity} shows the overall temperature reactivity feedback
+	coefficients due to the Doppler effect and
+	temperature-driven fuel salt expansion. The coefficients were derived by
+	applying a least squares best fit on the multiplication factors at
+	temperatures from 900 K to 1200 K with 50 K intervals.
 	
-\begin{table}[b]
+\begin{table}[t]
 	\centering
 	\captionsetup{justification=centering}
 	\caption{Neutron energy group upper bounds used in Serpent.}
@@ -307,6 +319,22 @@ $^{233}$U & 1.00\\
 		\hline
 	\end{tabular}
 	\label{table:bound}
+\end{table}
+%
+\begin{table}[t]
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Temperature reactivity feedback coefficients.}
+	\begin{tabular}{rr}
+		\hline
+		{Composition} & {$\alpha_T$ [pcm K$^{-1}$]}\\
+		\hline
+		Start-up & $-7.39 \pm 0.03$\\
+		Early-life & $-7.25 \pm 0.03$\\
+		Equilibrium & $-6.24 \pm 0.03$\\
+		\hline
+	\end{tabular}
+	\label{table:reactivity}
 \end{table}	
 	
 	Finally, with the group constant data from SERPENT, Moltres
@@ -324,13 +352,11 @@ $^{233}$U & 1.00\\
 	increased computational time. Figure \ref{fig:mesh} shows the Moltres
 	\gls{MSFR} mesh.
 	
-	Moltres has a loop app functionality to account for the flow and decay of
-	\glspl{DNP} outside the active core region. For this paper, the two ends of
-	a separate, 188 cm long 1-D outer
-	loop region were ``attached" to the inlet and outlet of active core region
-	model, shown in Figure *, to form a closed coolant loop. We achieved this
-	by using \gls{DNP} boundary
-	conditions at the inlets and outlets of the core and outer loop geometry,
+	Moltres has a salt loop modeling capability to account for the flow and
+	decay of
+	\glspl{DNP} outside the active core region. Moltres applies \gls{DNP}
+	boundary
+	conditions at the inlets and outlets of the core and outer loop,
 	determined by the inflow and outflow values of each \gls{DNP} group at
 	each time-step for each boundary.
 	The \gls{DNP} equations also govern the \gls{DNP} behavior in the outer
@@ -338,15 +364,25 @@ $^{233}$U & 1.00\\
 	
 	The velocity profile is a uniform velocity of $1.1275$ ms$^{-1}$ throughout
 	the active core and outer loop regions. This value is derived from the
-	\gls{MSFR} loop circulation time of 4 s. Moltres also has a heat exchanger
-	kernel defined for simulating heat loss through
-	a heat exchanger. For this paper, the kernel was placed at the midpoint of
+	\gls{MSFR} loop circulation time of 4 s. Moltres also has heat exchanger
+	modeling capabilities, represented in \ref{eq3} by the heat sink term. For
+	this paper, it is implemented at the midpoint of
 	the outer loop region, with the heat loss value fixed to induce an
 	approximately 100 K
 	drop in temperature as specified by the \gls{MSFR} design inlet/outlet
 	temperature difference.
+	
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.47\textwidth]{./figures/reference}
+	\captionsetup{justification=centering}
+	\caption{Cross-section of the 2D axisymmetric model used in SERPENT.
+	Derived from the 2D axisymmetric reference model of the MSFR
+	\cite{pettersen_coupled_2016}. Figure is not drawn to scale.}
+	\label{fig:reference}
+\end{figure} 
 
-\subsection{\textbf{Moltres Code}}
+\subsection{Moltres Code}
 
 	This subsection provides the theoretical background for the coupled
 	neutronics/thermal-hydraulics physics implemented in Moltres.
@@ -378,9 +414,7 @@ $^{233}$U & 1.00\\
 \end{align}
 %
 	where
-
-{
-\small
+{\small
 \begin{align}
 	v_g &= \text{average speed of neutrons in group }g \\
 	\phi_g &= \text{flux of neutrons in group }g \\
@@ -388,7 +422,10 @@ $^{233}$U & 1.00\\
 	D_g &= \text{diffusion coefficient of neutrons in group }g \\
 	\Sigma^r_g &= \text{macroscopic cross-section for removal of neutrons} 
 	\nonumber \\
-	&\text{from group }g \\
+	&\text{from group }g
+\end{align}
+%
+\begin{align}
 	\Sigma^s_{g' \rightarrow g} &= \text{macroscopic cross-section of
 	scattering from }g' \text{ to }g \\
 	\chi^p_g &= \text{prompt fission spectrum neutrons in group }g \\
@@ -418,7 +455,7 @@ $^{233}$U & 1.00\\
 %
 \begin{align}
 	\rho c_{p} \frac{\partial T}{\partial t} + \nabla \cdot \big( \rho
-	c_{p} \overrightarrow{u} \cdot T - k \nabla T \big) = Q,
+	c_{p} \overrightarrow{u} \cdot T - k \nabla T \big) = Q_s - Q_{hx},
 	\label{eq3}
 \end{align}
 %
@@ -426,29 +463,20 @@ $^{233}$U & 1.00\\
 {\small
 \begin{align}
 	\rho &= \text{density of molten salt} \\
-	 c_{p} &= \text{specific heat capacity of molten salt} \\
-	 T &= \text{temperature of molten salt} \\
-	 \overrightarrow{u} &= \text{velocity of molten salt} \\
-	 k &= \text{thermal conductivity of molten salt},
+	c_{p} &= \text{specific heat capacity of molten salt} \\
+	T &= \text{temperature of molten salt} \\
+	\overrightarrow{u} &= \text{velocity of molten salt} \\
+	k &= \text{thermal conductivity of molten salt} \\
+	Q_{hx} &= \text{heat sink},
 \end{align}
 }
-	and the source term $Q$ is given as:
+	and the source term $Q_s$ is given as:
 %
 \begin{align}
-Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
+Q_s = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 \end{align}
-
-\begin{figure}[t] 
-	\centering
-	\includegraphics[width=0.47\textwidth]{./figures/reference}
-	\captionsetup{justification=centering}
-	\caption{Cross-section of the 2D axisymmetric model used in SERPENT.
-	Derived from the 2D axisymmetric reference model of the MSFR
-	\cite{pettersen_coupled_2016}. Figure is not drawn to scale.}
-	\label{fig:reference}
-\end{figure} 
 %
-\begin{figure}[t] 
+\begin{figure}[h] 
 	\centering
 	\includegraphics[width=0.45\textwidth]{./figures/mesh}
 	\captionsetup{justification=centering}
@@ -457,13 +485,13 @@ Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 	\label{fig:mesh}
 \end{figure} 
 
-\section{Steady State Neutron Flux and Temperature Distribution}
+\section{Steady State Neutron Flux \\and Temperature Distribution}
 
 	The \gls{MSFR} Moltres simulations were run in transient mode, with
 	adaptive time-stepping, and with an
 	initial neutron flux of $10^{14}$
-	\# cm$^{-2}$ s$^{-1}$ and an initial temperature of 923 K throughout the
-	fuel and blanket regions, for the start-up, \gls{BOL}, and equilibrium
+	cm$^{-2}$ s$^{-1}$ and an initial temperature of 923 K throughout the
+	fuel and blanket regions, for the start-up, early-life, and equilibrium
 	fuel compositions. The simulations reached steady state after 100 s, as the
 	volume-integrated neutron flux values varied by less than 0.001\% over the
 	last ten seconds. The computational time for each case averages at 30
@@ -472,9 +500,9 @@ Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 	Figure \ref{fig:totalflux} shows the total radial neutron flux at reactor
 	half-height, with the three fuel compositions at steady state. 
 	The peak neutron flux value is highest for the start-up composition,
-	followed by the \gls{BOL} and equilibrium compositions. All three values
+	followed by the early-life and equilibrium compositions. All three values
 	are slightly lower than the peak value of approximately
-	$8.6 \times 10^{15}$ \# cm$^{-2}$ s$^{-1}$ reported by Fiorina et al.
+	$8.6 \times 10^{15}$ cm$^{-2}$ s$^{-1}$ reported by Fiorina et al.
 	\cite{fiorina_investigation_2013}. This may be due to the truncation of
 	the top and bottom fuel regions of the core for the model used here.
 	The vacuum boundary conditions were imposed closer to the center and
@@ -487,39 +515,57 @@ Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 	flow pushes the temperature peak up to the outlet boundary. Tables
 	\ref{table:inlet} and \ref{table:outlet} show the average
 	fuel inlet and outlet temperatures for the three cases.
-%	
-\begin{table}[H]
+
+\begin{table}[t]
 	\centering
 	\captionsetup{justification=centering}
 	\caption{Average fuel inlet temperature.}
-	\begin{tabular}{ll}
+	\begin{tabular}{rr}
 		\hline
 		{Composition} & {Inlet temperature [K]}\\
 		\hline
 		Start-up & 964.85\\
-		\gls{BOL} & 925.11\\
+		Early-life & 925.11\\
 		Equilibrium & 916.85\\
 		\hline
 	\end{tabular}
 	\label{table:inlet}
 \end{table}	
 %
-\begin{table}[H]
+\begin{table}[t]
 	\centering
 	\captionsetup{justification=centering}
 	\caption{Average fuel outlet temperature.}
-	\begin{tabular}{ll}
+	\begin{tabular}{rr}
 		\hline
 		{Composition} & {Outlet temperature [K]}\\
 		\hline
 		Start-up & 1067.40\\
-		\gls{BOL} & 1025.39\\
+		Early-life & 1025.39\\
 		Equilibrium & 1016.67\\
 		\hline
 	\end{tabular}
 	\label{table:outlet}
 \end{table}	
-
+%
+\begin{figure}[b] 
+	\centering
+	\includegraphics[width=.53\textwidth]{./figures/totalflux}
+	\captionsetup{justification=centering}
+	\caption{Total radial neutron flux at reactor half-height, for start-up,
+	early-life, and equilibrium fuel compositions at steady state.}
+	\label{fig:totalflux}
+\end{figure} 
+%
+\begin{figure}[t] 
+	\centering
+	\includegraphics[width=.53\textwidth]{./figures/stflux}
+	\captionsetup{justification=centering}
+	\caption{Neutron group fluxes at reactor half-height, for start-up
+	fuel composition at steady state.}
+	\label{fig:stflux}
+\end{figure} 
+%
 \begin{figure*}%
 \centering
 \begin{subfigure}{1\columnwidth}
@@ -536,34 +582,38 @@ Q = \sum^G_{g=1} \epsilon_g \Sigma_g^f \phi_g. \label{eq4}
 \end{subfigure}%
 \captionsetup{justification=centering}
 \caption{Temperature distributions within the fuel salt region, for start-up
-(top left), \gls{BOL} (top right), and equilibrium (bottom) fuel compositions
+(top left), early-life (top right), and equilibrium (bottom) fuel compositions
 at steady state. The height and radius are in the Y and X directions
 respectively.}
 \label{fig:temp}
 \end{figure*}
-%
-\begin{figure}[H] 
-	\centering
-	\includegraphics[width=.53\textwidth]{./figures/totalflux}
-	\captionsetup{justification=centering}
-	\caption{Total radial neutron flux at reactor half-height, for start-up,
-	\gls{BOL}, and equilibrium fuel compositions at steady state.}
-	\label{fig:totalflux}
-\end{figure} 
-\begin{figure}[H] 
-	\centering
-	\includegraphics[width=.53\textwidth]{./figures/stflux}
-	\captionsetup{justification=centering}
-	\caption{Neutron group fluxes at reactor half-height, for start-up
-	fuel composition at steady state.}
-	\label{fig:stflux}
-\end{figure} 
 
-	The temperature distribution is very different from the results by Fiorina
-	et al. \cite{fiorina_modelling_2014} and Pettersen
-	\cite{pettersen_coupled_2016} because we assumed a uniform velocity
-	profile. In reality, there is significant flow stagnation in the fuel salt
-	near the blanket tank. This causes temperatures to peak near the blanket
+	The average outlet temperatures for all three compositions are close to
+	the \gls{MSFR} outlet temperature specification of 1023 K. Due to having a
+	Reynolds number, significant
+	mixing and heat transfer is expected in the fuel salt as it flows
+	out of the core and through the outer loop. However, the center of the top
+	reflector region is exposed to dangerously high peak temperatures
+	of greater than 1100 K in all three cases as observed in Figure
+	\ref{fig:temp}. In addition, higher temperatures
+	are expected during dangerous accident scenarios.
+	
+	In actuality, the peak temperatures are likely to be lower than the values
+	seen in Figure \ref{fig:temp} because of turbulent mixing. In choosing a
+	uniform velocity profile, we have also implied that flow is laminar, which
+	is a weak assumption given the high Reynolds number of molten salt flow in
+	the \gls{MSFR}. Turbulent temperature mixing could potentially be
+	approximated by
+	incorporating it into the conduction term as turbulent diffusion.
+	
+	The uniform velocity approximation in our models also resulted in a
+	significantly different spatial temperature distribution shape as compared
+	to
+	the results by Fiorina et al. \cite{fiorina_modelling_2014} and Pettersen
+	\cite{pettersen_coupled_2016}. Their models feature significant flow
+	stagnation in the fuel salt
+	near the blanket tank. This causes their temperatures distributions to peak
+	near the blanket
 	tank as opposed to the center of the core as seen in Figure \ref{fig:temp}.
 	However, improved models of the \gls{MSFR}, as shown by Aufiero et al.
 	\cite{aufiero_development_2014}, have temperature distributions closer to
@@ -583,14 +633,16 @@ respectively.}
 	
 	Comparing the three different fuel compositions, the \gls{MSFR} operates at
 	the highest temperatures with the start-up fuel composition, followed by
-	the \gls{BOL}, and the equilibrium compositions. This may be due to the
+	the early-life, and the equilibrium compositions. This may be due to the
 	generation of $^{233}$Pa as an intermediate for $^{233}$U breeding as
-	mentioned by Rykhlevskii et al. \cite{rykhlevskii_fuel_2019} in their fuel cycle analysis
+	mentioned by Rykhlevskii et al. \cite{rykhlevskii_fuel_2019} in their fuel
+	cycle analysis
 	of the \gls{MSFR}; $^{233}$Pa is a significant neutron poison.
 
-\section{Loss of Secondary Cooling Accident}
+\section{Unprotected Loss of Heat Sink}
 
-	A \gls{LOSCA} may occur due to various causes of failure in the secondary
+	\gls{ULOHS} may occur due to various causes of failure in the heat
+	exchanger or secondary
 	coolant loop such as secondary loop pump failure or loss of secondary
 	coolant. While it is less likely in an \gls{MSFR} as it consists of 16
 	separate coolant loops each with its own secondary cooling system, the
@@ -599,7 +651,7 @@ respectively.}
 	the heat loss rate in the Moltres heat exchanger kernel with a time
 	constant of 5 s.
 	
-	The loss of heat sink is expected to cause an initial temperature spike,
+	\gls{ULOHS} is expected to cause temperatures to increase,
 	followed by a decrease in neutron flux and heat generation due to the
 	strong negative temperature reactivity feedback. Eventually, the
 	\gls{MSFR} should settle on a new steady state with a higher average
@@ -607,12 +659,12 @@ respectively.}
 	sustained for a long period of time, it could lead to severe damage
 	in the reactor, pipes, or other instruments.
 	
-\begin{figure}[b] 
+\begin{figure}[t] 
 	\centering
 	\includegraphics[width=.53\textwidth]{./figures/loscatemp}
 	\captionsetup{justification=centering}
-	\caption{Average core fuel temperature for start-up, \gls{BOL}, and
-	equilibrium fuel compositions during \gls{LOSCA}.}
+	\caption{Average core fuel temperature for start-up, early-life, and
+	equilibrium fuel compositions during \gls{ULOHS}.}
 	\label{fig:loscatemp}
 \end{figure} 
 %
@@ -620,47 +672,54 @@ respectively.}
 	\centering
 	\includegraphics[width=.53\textwidth]{./figures/loscaheat}
 	\captionsetup{justification=centering}
-	\caption{Total thermal power generated, for start-up, \gls{BOL}, and
-	 equilibrium fuel compositions during \gls{LOSCA}.}
+	\caption{Total thermal power generated, for start-up, early-life, and
+	 equilibrium fuel compositions during \gls{ULOHS}.}
 	\label{fig:loscaheat}
 \end{figure} 
 
 	As observed in Figure \ref{fig:loscatemp}, the average fuel temperature
-	increased by approximately 10 K and reached the new steady state
-	30-40 s after \gls{LOSCA} began. While the time delay, due to the high
-	initial
-	\gls{DNP} concentration, is in good agreement with results reported by
+	starts rising approximately 0.7 s after initiation. The \gls{MSFR} reaches
+	a new steady state approximately 10 K higher than the initial temperature
+	after 30 s. While the transition time to reach the new steady state is in
+	good agreement with results reported by
 	Fiorina et al. \cite{fiorina_modelling_2014}, the temperature rise is much
 	smaller than the 100 K increase reported by the same authors.
-	Power generation fell by two orders of
+	Power generation falls by two orders of
 	magnitude, resulting in a negligible temperature difference between the
 	inlets and outlets for all three fuel compositions. This could also be
 	attributed to the relatively small total power of 2 GW discussed in the
 	previous section, and the truncated \gls{MSFR} model.
 	
-	In comparing the three fuel compositions, a \gls{MSFR} loaded with
-	start-up fuel composition is at a higher risk as it has higher
+	In comparing the three fuel compositions, an \gls{MSFR} loaded with
+	start-up fuel composition is at a higher safety risk as it has higher
 	temperatures under normal operating conditions and accident scenarios.
 
 \section{Conclusion}
 
 	In this study, we investigated the steady state, and transient behavior of
-	the \gls{MSFR} during a \gls{LOSCA}
+	the \gls{MSFR} during a \gls{ULOHS}
 	using the coupled neutronics/thermal-hydraulics code Moltres. Moltres
 	boasts relatively fast computational times due to a combination of
 	parallelization,
 	adaptive coarse meshing scheme and adaptive time-stepping. The total
 	neutron flux at steady state agrees very closely with published results by
-	Fiorina et al. \cite{fiorina_modelling_2014} While the temperature
+	Fiorina et al. \cite{fiorina_modelling_2014}.
+	
+	While the temperature
 	distribution and total power have
 	large discrepancies, we have accounted for the main sources of error:
 	the erroneous uniform velocity profile and the reactor model truncation. We
 	also observed that the \gls{MSFR} operates at a higher temperature with the
-	start-up fuel composition than with the \gls{BOL} and equilibrium
-	compositions, due to the presence of $^{233}$Pa.
+	start-up fuel composition than with the early-life and equilibrium
+	compositions, due to the presence of $^{233}$Pa. The high peak temperatures 
+	near the center of the top reflector are a potential safety risk. While
+	this high temperatures could have been exacerbated by absence of turbulent
+	diffusion implementation in Moltres, it warrants the need for further
+	safety analysis.
 	
-	During a \gls{LOSCA}, the \gls{MSFR} core fuel salt temperatures rise by
-	approximately 10 K after a time delay of 30-40 s. While the time delay is
+	During a \gls{ULOHS}, the \gls{MSFR} core fuel salt temperatures rise by
+	approximately 10 K after a transition time of 30 s. While this time
+	duration is
 	similar to published results, the temperature rise is relatively low
 	compared to the 100 K rise reported by Fiorina et al.
 	\cite{fiorina_modelling_2014} This discrepancy is also attributed to the
@@ -668,20 +727,31 @@ respectively.}
 	temperature rise of
 	this magnitude is relatively benign to reactor components, and makes
 	a strong safety case for \glspl{MSR} due to their strong negative
-	temperature feedback. 
+	temperature feedback, with the exception of the central top reflector
+	region discussed previously.
 	
 	Further development of the models is necessary to improve the accuracy
 	and reliability of Moltres as a coupled neutronics/thermal-hydraulics code.
 	Further work includes using an arbitrarily defined velocity profile, such
 	as a parabolic profile. A better option would be the development of a
-	Navier-Stokes module to generate an accurate velocity profile.
+	Navier-Stokes module to generate an accurate velocity profile. A turbulent
+	diffusion model would also be an essential addition to account for
+	turbulent temperature mixing.
 	
-	The heat exchanger functionality in Moltres can also be improved beyond
+	The heat exchanger functionality in Moltres can be improved beyond
 	the current implementation of a fixed heat sink. The relevant heat
 	transfer parameters between the primary and secondary loop in the heat
 	exchanger would be necessary for a more complicated heat exchanger system.
 
-\bibliographystyle{ans}
-\bibliography{bibliography}
+%\begin{center}
+%\section*{Acknowledgements}
+%\end{center}
+
+%Acknowledgements \\
+
+\begin{center}
+	\bibliographystyle{ans}
+	\bibliography{bibliography}
+\end{center}
 
 \end{document}
