@@ -1,0 +1,60 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{lindsay_introduction_2018}
+\MakeUppercase{A.~Lindsay}, \MakeUppercase{G.~Ridley},
+  \MakeUppercase{A.~Rykhlevskii}, and \MakeUppercase{K.~Huff},
+  \enquote{Introduction to {Moltres}: {An} application for simulation of
+  {Molten} {Salt} {Reactors},} \emph{Annals of Nuclear Energy}, \textbf{114},
+  530--540 (Apr. 2018).
+
+\bibitem{gaston_moose:_2009}
+\MakeUppercase{D.~Gaston}, \MakeUppercase{C.~Newman},
+  \MakeUppercase{G.~Hansen}, and \MakeUppercase{D.~Lebrun-Grandie},
+  \enquote{{MOOSE}: {A} parallel computational framework for coupled systems of
+  nonlinear equations,} \emph{Nuclear Engineering and Design}, \textbf{239},
+  \emph{10}, 1768--1778 (Oct. 2009).
+
+\bibitem{merle-lucotte_launching_2011}
+\MakeUppercase{E.~Merle-Lucotte}, \MakeUppercase{D.~Heuer},
+  \MakeUppercase{M.~Allibert}, \MakeUppercase{M.~Brovchenko},
+  \MakeUppercase{N.~Capellan}, and \MakeUppercase{V.~Ghetta},
+  \enquote{Launching the thorium fuel cycle with the {Molten} {Salt} {Fast}
+  {Reactor},} in \enquote{Proceedings of {ICAPP},}  (2011), pp. 2--5.
+
+\bibitem{serp_molten_2014}
+\MakeUppercase{J.~Serp}, \MakeUppercase{M.~Allibert}, \MakeUppercase{O.~Benes},
+  \MakeUppercase{S.~Delpech}, \MakeUppercase{O.~Feynberg},
+  \MakeUppercase{V.~Ghetta}, \MakeUppercase{D.~Heuer},
+  \MakeUppercase{D.~Holcomb}, \MakeUppercase{V.~Ignatiev}, \MakeUppercase{J.~L.
+  Kloosterman}, \MakeUppercase{L.~Luzzi}, \MakeUppercase{E.~Merle-Lucotte},
+  \MakeUppercase{J.~Uhlíř}, \MakeUppercase{R.~Yoshioka}, and
+  \MakeUppercase{D.~Zhimin}, \enquote{The molten salt reactor ({MSR}) in
+  generation {IV}: {Overview} and perspectives,} \emph{Progress in Nuclear
+  Energy}, \textbf{77}, \emph{Supplement C}, 308--319 (Nov. 2014).
+
+\bibitem{leppanen_serpent_2015}
+\MakeUppercase{J.~Leppanen}, \MakeUppercase{M.~Pusa},
+  \MakeUppercase{T.~Viitanen}, \MakeUppercase{V.~Valtavirta}, and
+  \MakeUppercase{T.~Kaltiaisenaho}, \enquote{The {Serpent} {Monte} {Carlo}
+  code: {Status}, development and applications in 2013,} \emph{Annals of
+  Nuclear Energy}, \textbf{82}, 142--150 (Aug. 2015).
+
+\bibitem{fiorina_analysis_2012}
+\MakeUppercase{C.~Fiorina}, \MakeUppercase{M.~Aufiero},
+  \MakeUppercase{A.~Cammi}, \MakeUppercase{C.~Guerrieri},
+  \MakeUppercase{J.~Krepel}, \MakeUppercase{L.~Luzzi},
+  \MakeUppercase{K.~Mikityuk}, and \MakeUppercase{M.~E. Ricotti},
+  \enquote{Analysis of the {MSFR} {Core} {Neutronics} {Adopting} {Different}
+  {Neutron} {Transport} {Models},} pp. 219--228 (Jul. 2012).
+
+\bibitem{fiorina_investigation_2013}
+\MakeUppercase{C.~Fiorina}, \MakeUppercase{M.~Aufiero},
+  \MakeUppercase{A.~Cammi}, \MakeUppercase{F.~Franceschini},
+  \MakeUppercase{J.~Krepel}, \MakeUppercase{L.~Luzzi},
+  \MakeUppercase{K.~Mikityuk}, and \MakeUppercase{M.~E. Ricotti},
+  \enquote{Investigation of the {MSFR} core physics and fuel cycle
+  characteristics,} \emph{Progress in Nuclear Energy}, \textbf{68}, 153--168
+  (Sep. 2013).
+
+\end{thebibliography}

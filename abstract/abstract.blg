@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: abstract.aux
+The style file: ans.bst
+Database file #1: bibliography.bib
+Warning--empty journal in fiorina_analysis_2012
+You've used 7 entries,
+            2305 wiz_defined-function locations,
+            584 strings with 6861 characters,
+and the built_in function-call counts, 3783 in all, are:
+= -- 191
+> -- 164
+< -- 2
++ -- 57
+- -- 50
+* -- 378
+:= -- 393
+add.period$ -- 15
+call.type$ -- 7
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 401
+empty$ -- 363
+format.name$ -- 57
+if$ -- 771
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 104
+newline$ -- 25
+num.names$ -- 7
+pop$ -- 129
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 43
+stack$ -- 0
+substring$ -- 187
+swap$ -- 324
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 23
+width$ -- 8
+write$ -- 65
+(There was 1 warning)
