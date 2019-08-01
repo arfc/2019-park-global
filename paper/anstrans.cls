@@ -92,6 +92,9 @@
 	{\reset@font\emph}%
 }
 
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\thesection.\Alph{subsection}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APPENDIX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % appendix needs equations labeled A.1 etc., but shouldn't look like 
 %   A   MY FIRST APPENDIX
