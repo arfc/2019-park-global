@@ -25,6 +25,7 @@ Illinois at Urbana-Champaign \\
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{xspace}
+\usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{booktabs} % nice rules for tables
@@ -49,6 +50,9 @@ text width=7em, text centered, rounded corners, minimum height=4em]
 \DeclareMathOperator{\erfc}{erfc}
 %Those icons in the references are terrible looking
 \setbeamertemplate{bibliography item}[text]
+%Figure numbering
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{caption}{size=\small}
 
 %%%% Acronym support
 
@@ -123,13 +127,10 @@ text width=7em, text centered, rounded corners, minimum height=4em]
 %\input{approach}
 
 \section{Results}
-%\input{breakdown}
-%\subsection{Comparison of Prediction Methods}
-%\input{compare_prediction}
-%\subsection{Sensitivity Analysis of Power Buffer Size}
-%\input{sa}
-%\subsection{Best Performing Transition Scenarios}
-%\input{best}
+\subsection{Neutronics Verification}
+\input{neutron}
+\subsection{Steady State Case}
+\input{steady}
 
 \section{Conclusion}
 \subsection{Conclusion}

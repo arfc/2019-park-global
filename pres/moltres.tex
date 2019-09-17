@@ -4,14 +4,15 @@
 		\begin{itemize}
 			\item Moltres is an application code built on the \gls{MOOSE}
 			framework, for the simulation of \glspl{MSR}
-			\item \gls{MOOSE} is an open source finite element framework that
+			\item \gls{MOOSE} is an open source finite element framework written
+			in \texttt{C++} that
 			relies on Libmesh and PETSc for advanced meshing and PDE solving
 			capabilities
 			\item Moltres can run transient, implicitly coupled
 			neutronics/thermal-hydraulics simulations
 			\begin{itemize}
 				\item Multi-group neutron diffusion (arbitrary groups)
-				\item Delayed neutron precursor decay (with advection)
+				\item \gls{DNP} decay (with advection)
 				\item Incompressible Navier-Stokes for temperature
 				advection-diffusion
 				\item 1D, 2D, and 3D modeling are supported
