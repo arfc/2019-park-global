@@ -1,0 +1,24 @@
+\begin{frame}
+	\frametitle{Moltres}
+		\textbf{Multi-group neutron diffusion}
+		\begin{align}
+	\frac{1}{v_g} &\frac{\partial \phi_g}{\partial t} - \nabla \cdot D_g \nabla
+	\phi_g + \Sigma^r_g \phi_g \nonumber \\ 
+	&= \sum^G_{g \neq g'} \Sigma^s_{g' \rightarrow g} \phi_{g'} + \chi^p_g
+	\sum^G_{g'=1} (1-\beta) \nu \Sigma^f_{g'} \phi_{g'} + \chi^d_g \sum^I_i
+	\lambda_i C_i \label{eq1}
+		\end{align}
+		
+		\textbf{Delayed neutron precursor (with advection)}
+		\begin{align}
+	\frac{\partial C_i}{\partial t} = \sum^G_{g'=1} \beta_i \nu \Sigma^f_{g'}
+	\phi_{g'} - \lambda_i C_i - \frac{\partial}{\partial z} u C_i \label{eq2}
+		\end{align}
+		
+		\textbf{Temperature advection-diffusion}
+		\begin{align}
+	\rho c_{p} \frac{\partial T}{\partial t} + \nabla \cdot \big( \rho
+	c_{p} \overrightarrow{u} \cdot T - k \nabla T \big) = Q_s - Q_{hx},
+	\label{eq3}
+		\end{align}
+\end{frame}
