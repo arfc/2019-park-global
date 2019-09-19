@@ -49,22 +49,23 @@
 \begin{frame}
 	\frametitle{Neutronics Verification}
 	\begin{columns}
-		\column{5cm}
+		\column{5.5cm}
 		\textbf{Moltres Simulation Details}
 		\begin{itemize}
+			\small
 			\item Adaptive backward Euler time-stepper
 			\item Six neutron groups, eight \gls{DNP} groups
-			\item Vacuum neutron boundary condition on outer surfaces
+			\item Vacuum neutron boundary condition on outer edges
 			\item Uniform upward flow of 1.125 m s$^{-1}$
 			\item Flow/decay of \glspl{DNP} and heat removal in the outer loop
 			is simulated on a simplified 1D geometry separate from active core
 			region
 			\item Fixed heat removal rate to secondary loop system
 		\end{itemize}
-		\column{5cm}
+		\column{4.5cm}
 		\begin{figure}
 			\centering
-			\includegraphics[width=.8\textwidth]{../paper/figures/mesh}
+			\includegraphics[width=.9\textwidth]{../paper/figures/mesh}
 			\caption{Mesh of the 2D axisymmetric model used in Moltres. The
 			grey and red regions represent the fuel and blanket salt
 			respectively.}
@@ -81,7 +82,27 @@
 				\includegraphics[width=.8\textwidth]{../paper/figures/nt-spec}
 				\caption{Fine-group and six-group neutron flux distributions
 				from Serpent and Moltres (start-up composition without \gls{DNP}
-				drift).}
+				drift at 973 K).}
 				\label{fig:ntspec}
 			\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Neutronics Verification}
+		\textbf{Temperature Reactivity Feedback}
+			\begin{table}[t]
+				\centering
+				\caption{Temperature reactivity feedback coefficients.}
+				\begin{tabular}{lccc}
+					\hline
+					\multirow{2}{*}{Composition} & {$\alpha_T$ [pcm K$^{-1}$]} & {$\alpha_T$ [pcm K$^{-1}$]} & Difference\\
+					& Serpent & Moltres & [pcm K$^{-1}$]\\
+					\hline
+					Start-up & $-7.39 \pm 0.03$ & $-7.46$ & $-0.07$\\
+					Early-life & $-7.25 \pm 0.03$ & $-7.33$ & $-0.08$\\
+					Equilibrium & $-6.24 \pm 0.03$ & $-6.34$ & $-0.10$\\
+					\hline
+				\end{tabular}
+				\label{table:reactivity}
+			\end{table}	
 \end{frame}
