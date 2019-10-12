@@ -1,24 +1,24 @@
 \begin{frame}
-	\frametitle{Steady State}
+	\frametitle{Steady State Results}
 		\textbf{Steady state neutron flux (with \gls{DNP} drift)}
 		\begin{columns}
-			\column{5cm}
+			\column[t]{5.5cm}
 			\begin{figure}
 				\small
 				\centering
-				\includegraphics[width=\textwidth]{../paper/figures/totalflux}
-				\caption{\small Total radial neutron flux at reactor
+				\includegraphics[width=\textwidth]{./images/totalflux}
+				\caption{Total radial neutron flux at reactor
 				half-height, for start-up, early-life, and equilibrium fuel
 				compositions.}
 				\label{fig:totalflux}
 			\end{figure}
-			\column{5cm}
+			\column[t]{5.5cm}
 			\begin{figure}
 				\small
 				\centering
-				\includegraphics[width=\textwidth]{../paper/figures/stflux}
-				\caption{\small Neutron group fluxes at reactor half-height, for
-				start-up, early-life, and equilibrium fuel compositions.}
+				\includegraphics[width=\textwidth]{./images/stflux}
+				\caption{Neutron group fluxes at reactor half
+				height, for start-up fuel compositions.}
 				\label{fig:stflux}
 			\end{figure}
 		\end{columns}
@@ -30,7 +30,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Steady State}
+	\frametitle{Steady State Results}
 		\textbf{Steady state temperature distribution}
 		\begin{columns}
 			\column{12cm}
@@ -39,15 +39,15 @@
 				\centering
 				\begin{subfigure}
 					\centering
-					\includegraphics[width=.3\textwidth]{../paper/figures/sttemp}
+					\includegraphics[width=.3\textwidth]{./images/sttemp}
 				\end{subfigure}
 				\begin{subfigure}
 					\centering
-					\includegraphics[width=.3\textwidth]{../paper/figures/eltemp}
+					\includegraphics[width=.3\textwidth]{./images/eltemp}
 				\end{subfigure}
 				\begin{subfigure}
 					\centering
-					\includegraphics[width=.3\textwidth]{../paper/figures/eqtemp}
+					\includegraphics[width=.3\textwidth]{./images/eqtemp}
 				\end{subfigure}\\
 				\hspace*{\fill}
 				(a) Start-up \hfill \hfill (b) Early-life \hfill \hfill
@@ -61,52 +61,34 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Steady State}
-		\begin{columns}
-			\column[t]{5cm}
+	\frametitle{Steady State Results}
 			\begin{table}[b]
 				\small
 				\centering
-				\caption{Average fuel inlet temperature}
-				\begin{tabular}{ll}
+				\caption{Average fuel inlet and outlet temperatures}
+				\begin{tabular}{lcc}
 					\hline
-					{Composition} & {Inlet temperature [K]}\\
+					{Composition} & {Inlet temperature [K]} & {Outlet
+					temperature [K]}\\
 					\hline
-					Start-up & 964.85\\
-					Early-life & 925.11\\
-					Equilibrium & 916.85\\
+					Start-up & 964.85 & 1067.40\\
+					Early-life & 925.11 & 1025.39\\
+					Equilibrium & 916.85 & 1016.67\\
 					\hline
 				\end{tabular}
 				\label{table:inlet}
 			\end{table}
-			\column[t]{5cm}
-			\begin{table}[b]
-				\small
-				\centering
-				\caption{Average fuel outlet temperature}
-				\begin{tabular}{ll}
-					\hline
-					{Composition} & {Outlet temperature [K]}\\
-					\hline
-					Start-up & 1067.40\\
-					Early-life & 1025.39\\
-					Equilibrium & 1016.67\\
-					\hline
-				\end{tabular}
-				\label{table:outlet}
-			\end{table}	
-		\end{columns}
 		
 		\vspace{.3cm}
-		\begin{itemize}
-		\item Highest average inlet and outlet temperatures observed for the
+		\begin{block}{Observation}
+		Highest average inlet and outlet temperatures observed for the
 		start-up composition, followed by early-life, and equilibrium
 		compositions.
-		\end{itemize}
+		\end{block}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Steady State}
+	\frametitle{Steady State Results}
 		\textbf{\gls{DNP} Distribution}
 		 \begin{figure}
 		 	\centering

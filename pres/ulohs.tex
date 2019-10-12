@@ -2,11 +2,15 @@
 	\frametitle{Unprotected Loss of Heat Sink}
 		\textbf{Problem Description}
 			\begin{itemize}
-				\item \gls{ULOHS} accidents generally occur due to various causes
-				of failure in the heat exchanger or secondary coolant loop
+				\item \gls{ULOHS} accidents are imagined to occur due to various
+				causes of failure in the heat exchanger or secondary coolant
+				loop with no safety response (e.g. scram)
 				\item In this work, \gls{ULOHS} is simulated by an exponential
 				decrease in the heat loss rate from the heat exchanger with a
 				time constant of 5 s
+					\begin{align*}
+						Q_{hx} = Q_{hx,0} e^{-t/5}
+					\end{align*}
 				\item Expect to observe a rise in temperature, accompanied by a
 				decrease in neutron flux and heat generation
 			\end{itemize}
@@ -16,16 +20,16 @@
 	\frametitle{Unprotected Loss of Heat Sink}
 		\textbf{Results}
 		\begin{columns}
-			\column{5cm}
+			\column[t]{5.5cm}
 			\begin{figure}
 				\centering
 				\includegraphics[width=\textwidth]{../paper/figures/loscatemp}
 				\caption{Rise in average core temperature during \gls{ULOHS}}
 			\end{figure}
-			\column{5cm}
+			\column[t]{5.5cm}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\textwidth]{../paper/figures/loscaheat}
+				\includegraphics[width=\textwidth]{./images/loscaheat}
 				\caption{Power generation during \gls{ULOHS}}
 			\end{figure}
 		\end{columns}
@@ -33,7 +37,7 @@
 			\item \gls{ULOHS} starts at t = 0
 			\item Average fuel temperature in core stabilizes at 10 K higher than
 			the initial temperature
-			\item Lower than expected temperature increase as decay heat is not
-			modeled
+			\item Lower than expected temperature increase compared to Fiorina
+			et al. \cite{fiorina_investigation_2013}
 		\end{itemize}
 \end{frame}
