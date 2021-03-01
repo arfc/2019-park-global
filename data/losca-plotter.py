@@ -14,7 +14,7 @@ temp = df['temp_fuel']
 heat = df['heat']
 #maxe = df['max_temp_fuel']
 
-dfl = pd.read_csv('losca-el_out.csv')
+dfl = pd.read_csv('ulohs-st-prec_out.csv')
 tl = dfl['time']
 g1l = dfl['group1_current']
 g2l = dfl['group2_current']
